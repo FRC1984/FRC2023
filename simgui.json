@@ -24,7 +24,14 @@
       "/LiveWindow/Ungrouped/DifferentialDrive[1]": "DifferentialDrive"
     }
   },
-  "NetworkTables View": {
-    "visible": false
+  "NetworkTables": {
+    "Persistent Values": {
+      "open": false
+    },
+    "transitory": {
+      "SmartDashboard": {
+        "open": true
+      }
+    }
   }
 }

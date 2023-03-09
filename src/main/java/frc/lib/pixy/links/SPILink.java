@@ -103,6 +103,7 @@ public class SPILink implements Link {
 				int csb = buffer[i] & 0xff;
 				cs.updateChecksum(csb);
 			}
+		System.out.println("RECV LEN: " + length);
 		return length;
 	}
 
@@ -128,6 +129,7 @@ public class SPILink implements Link {
 	 */
 	public int send(byte[] buffer, int length) {
 		spi.write(buffer, length);
+		System.out.println("sending");
 		return length;
 	}
 }

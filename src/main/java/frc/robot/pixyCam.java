@@ -17,7 +17,7 @@ public class pixyCam {
 
 	public static void initialize() {
 		pixy = Pixy2.createInstance(new SPILink()); // Creates a new Pixy2 camera using SPILink
-		int ret = pixy.init(); // Initializes the camera and prepares to send/receive data
+		int ret = pixy.init(1); // Initializes the camera and prepares to send/receive data
 		pixy.setLamp((byte) 1, (byte) 1); // Turns the LEDs on
 		pixy.setLED(255, 255, 255); // Sets the RGB LED to full io.github.pseudoresonance.pixy2apiwhite
 		System.out.println("intialized with code: " + ret);
@@ -44,4 +44,3 @@ public class pixyCam {
 		return largestBlock;
 	}
 }
-

@@ -128,7 +128,9 @@ public class Pixy2 {
 			// Tries to connect, times out if unable to communicate after 5 seconds
 			for (long t = System.currentTimeMillis(); System.currentTimeMillis() - t < 5000;) {
 				// Gets version and resolution to check if communication is successful and stores for future use
-				if (getVersion() >= 0) {
+				int version = getVersion();
+				System.out.println("Version: " + version);
+				if (version >= 0) {
 					getResolution();
 					return PIXY_RESULT_OK;
 				}

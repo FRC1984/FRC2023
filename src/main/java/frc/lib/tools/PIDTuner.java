@@ -122,5 +122,6 @@ public class PIDTuner {
         SmartDashboard.putNumber("SetPoint", setPoint);
         SmartDashboard.putNumber("Process Variable", processVariable);
         SmartDashboard.putNumber("Output", motor.getAppliedOutput());
+        SmartDashboard.putNumber("Current", motor.getOutputCurrent());
     }
 }

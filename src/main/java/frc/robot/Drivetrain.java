@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 public class Drivetrain {
@@ -28,8 +29,7 @@ public class Drivetrain {
         leftDrive1 = new CANSparkMax(ld1, MotorType.kBrushless);
         leftDrive2 = new CANSparkMax(ld2, MotorType.kBrushless);
         rightDrive1 = new CANSparkMax(rd1, MotorType.kBrushless);
-        leftDrive1 = new CANSparkMax(rd2, MotorType.kBrushless);
-
+        rightDrive2 = new CANSparkMax(rd2, MotorType.kBrushless);
         leftDrive = new MotorControllerGroup(leftDrive1, leftDrive2);
         rightDrive = new MotorControllerGroup(rightDrive1, rightDrive2);
 
@@ -51,7 +51,17 @@ public class Drivetrain {
 
     //Maybe only rate limit the x and not the turn, dont know whats better until test
     public void smoothDrive() {
-        drive.arcadeDrive(rateLimit.calculate(controller.getX()), rateLimit.calculate(controller.getY()));
+        drive.arcadeDrive(rateLimit.calculate(controller.getY()), controller.getX());
+    }
+    public void test() {
+        System.out.println(this.drive);
     }
 
+    public void updateStats() {
+        SmartDashboard.putNumber("Left Speed", leftDrive.get());
+        SmartDashboard.putNumber("Right Speed", rightDrive.get());
+        double[] temps = { leftDrive1.getMotorTemperature(), leftDrive2.getMotorTemperature(), rightDrive1.getMotorTemperature(), rightDrive1.getMotorTemperature() };
+        SmartDashboard.putNumberArray("Motor Temps", temps);
+    }
+    
 }
