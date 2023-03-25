@@ -51,7 +51,7 @@ public class Drivetrain {
 
     //Maybe only rate limit the x and not the turn, dont know whats better until test
     public void smoothDrive() {
-        drive.arcadeDrive(rateLimit.calculate(controller.getY()), controller.getX());
+        drive.arcadeDrive(rateLimit.calculate(controller.getX()), controller.getY() * .5);
     }
     public void test() {
         System.out.println(this.drive);

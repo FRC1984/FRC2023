@@ -2,9 +2,32 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.AddressableLED;
 import edu.wpi.first.wpilibj.AddressableLEDBuffer;
+import edu.wpi.first.wpilibj.PWM;
+import edu.wpi.first.wpilibj.Relay;
+import edu.wpi.first.wpilibj.Relay.Value;
 
 
+
+public class Lights {
+    private Relay spike1, spike2;
+
+    public Lights(int channel1, int channel2) {
+        spike1 = new Relay(channel1);
+        spike2 = new Relay(channel2);
+    }
+
+
+    public void on() {
+        spike1.set(Value.kForward);
+        spike2.set(Value.kForward);
+    }
+    public void off() {
+        spike1.set(Value.kOff);
+        spike2.set(Value.kOff);
+    }
+}
 //unfinished
+/* 
 public class Lights {
 
     private int numLights = 147;
@@ -31,3 +54,4 @@ public class Lights {
          m_led.setData(m_ledBuffer);
     }
 }
+*/

@@ -6,18 +6,12 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 
-import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.PWM;
-import edu.wpi.first.wpilibj.PneumaticsControlModule;
-import edu.wpi.first.wpilibj.PneumaticsModuleType;
-import edu.wpi.first.wpilibj.Solenoid;
 import frc.lib.tools.PIDTuner;
 //import com.analog.adis16448.frc.ADIS16448_IMU;
 /*
@@ -31,17 +25,23 @@ import frc.lib.tools.PIDTuner;
   //private final CANSparkMax clawArm = new CANSparkMax(6, MotorType.kBrushless);
   //private final PIDTuner tuner = new PIDTuner(7);
   private final Timer m_timer = new Timer();
+  //private final Lights lights = new Lights(0, 1);
+  //private final PIDTuner tuner = new PIDTuner(7);
   //private final Joystick stick = new Joystick(0);
   //private final XboxController cont = new XboxController(0);
-  //private final Intake intake = new Intake(6 , stick);
-  //private final Solenoid sol = new Solenoid(PneumaticsModuleType.CTREPCM, 0);
+  //private final Intake intake = new Intake(6);
   private final Arm arm = new Arm(7);
+  
+  
+  //private final Arm arm = new Arm(7, 6, stick);
   //private final Drivetrain drive = new Drivetrain(1, 2, 3, 4, stick, .07);
   //private final Lights lights = new Lights();
 
   @Override
   public void robotInit() {
     //arm.updateStats();
+    //CameraServer.startAutomaticCapture();
+    //CameraServer.startAutomaticCapture(1);
   }
 
   /** This function is run once each time the robot enters autonomous mode. */
@@ -68,7 +68,7 @@ import frc.lib.tools.PIDTuner;
   @Override
   public void teleopPeriodic() {
     //System.out.println(pixyCam.getBiggestBlock());
-    //drive.go();
+    //drive.smoothdrive();
   }
 
   /** This function is called once each time the robot enters test mode. */
@@ -76,25 +76,30 @@ import frc.lib.tools.PIDTuner;
   public void testInit() {
     m_timer.reset();
     m_timer.start();
-    arm.reset();
+    //arm.reset();
+    //Vision.init();
   }
 
   /** This function is called periodically during test mode. */
   @Override
   public void testPeriodic() {
-    //lights.setSolidColor(255, 255, 255);
-    //drive.drive();
-    //tuner.run();
-    //drive.updateStats();
-   // sol.set((int) m_timer.get() % 2 == 0);
-
-    //arm.runSemiRaw();
-    //arm.updateStats();
-    //arm.test();
+    //intake.run(.5);
     arm.runTest();
     arm.updateStats();
-    //intake.run();
+    /* 
+    if (m_timer.get() % 4 < 2) {
+      lights.on();
+    } else {
+      lights.off();
+    }
+    */
+    //drive.drive();
+    //drive.updateStats();
+    //arm.updateStats();
+    //arm.updateStats();
+    //intake.run(-stick.getY());
     //intake.updateStats();
+    //tuner.run();
     /* 
     SmartDashboard.putNumber("Joystick X", stick.getX());
     SmartDashboard.putNumber("Joystick Y", stick.getY());

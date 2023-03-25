@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Arm {
 
-    private DigitalInput limit_switch = new DigitalInput(4);
+    private DigitalInput limit_switch = new DigitalInput(1);
 
     private boolean locationKnown = false;
     private Joystick cont;
@@ -61,7 +61,7 @@ public class Arm {
         }
 
         if (!locationKnown) {
-            armPID.setMotorRaw(-0.1);
+            armPID.setMotorRaw(-0.3);
         }
     }
     public void runRaw() {
@@ -81,7 +81,7 @@ public class Arm {
             } else if (cont.getRawButton(8)) {
                 armPID.setTarget(0);
             } 
-            //intake.run(cont.getY());
+            intake.run(cont.getY());
         }
         
     }
